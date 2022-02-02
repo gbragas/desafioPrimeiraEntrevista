@@ -1,0 +1,36 @@
+1)
+SELECT COUNT(*), B.dsStatus
+FROM 	tb_Processo A,
+        tb_Status B 
+WHERE	A.idStatus = B.idStatus
+GROUP BY B.dsStatus 
+
+2)
+SELECT A.nroProcesso, B.dtAndamento
+FROM tb_Processo A,
+     tb_Andamento B 
+WHERE A.dtEncerramento BETWEEN '01.01.2013' AND '31.12.2013' 
+  AND B.dtAndamento = (SELECT MAX(dtAndamento)
+                       FROM tb_Andamento C
+                       WHERE C.idProcesso = A.idProcesso)
+
+3)
+SELECT dt.Encerramento, Count(*)
+FROM tb_Processo
+GROUP BY dt.Encerramento
+HAVING COUNT(*) > 5
+
+4)
+
+SELECT REPLICATE('0', 4) + idProcesso 
+FROM tb_Processo 
+ 
+
+
+
+
+
+
+
+
+	
